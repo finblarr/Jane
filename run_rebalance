@@ -1,0 +1,6 @@
+#!/bin/sh
+high=`curl http://dev.markitondemand.com/Api/v2/Quote/json?SYMBOL=aapl | jq ".High"`
+if [ "$high" != "0" ]; 
+then
+    ~/Projects/Jane/backend-ocaml/rebalance.byte
+fi
