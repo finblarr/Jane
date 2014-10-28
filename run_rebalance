@@ -1,6 +1,9 @@
 #!/bin/sh
-high=`curl http://dev.markitondemand.com/Api/v2/Quote/json?SYMBOL=aapl | jq ".High"`
+high=`curl http://dev.markitondemand.com/Api/v2/Quote/json?SYMBOL=aapl | /usr/local/bin/jq ".High"`
 if [ "$high" != "0" ]; 
 then
+    date=`/usr/local/bin/gdate`
+    portfolio=`cat /Users/ft/Projects/Jane/backend-ocaml/portfolio.json`
+    echo "$date $portfolio" >> /Users/ft/Projects/Jane/backend-ocaml/portfolio.log
     ~/Projects/Jane/backend-ocaml/rebalance.byte
 fi
